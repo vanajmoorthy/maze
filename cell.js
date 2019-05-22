@@ -48,7 +48,7 @@ class Box {
             }
 
             stroke(255);
-            strokeWeight(1);
+            strokeWeight(2);
 
             if (this.walls[0]) {
                 line(x, y, x + w, y); // top
