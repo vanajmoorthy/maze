@@ -1,96 +1,166 @@
-var cols, rows;
-var w = 40;
-var grid = [];
-var current;
+let colm;
+let rows;
+let w;
+let grid;
+
+let curr;
+let goal;
+
+let stack;
+
+const GameState = {
+    PREPARING: 1,
+    PLAYING: 2,
+    GAME_OVER: 3
+};
+
+let state;
+let dir;
+
+let mazeStart;
+
+function resetGame() {
+    colm = +document.querySelector("input").value;
+    rows = colm;
+
+    grid = [];
+    stack = [];
+
+    state = GameState.PREPARING;
+    dir = 0;
+    document.getElementById("score").innerText = 0;
+
+    mazeStart = 0;
+
+    w = width / colm;
+	for (var j = 0; j < rows; j++) {
+		for (var i = 0; i < colm; i++) {
+			var box = new Box(i, j);
+			grid.push(box);
+		}
+	}
+	curr = grid[0];
+	goal = grid[grid.length - 1];
+}
 
 function setup() {
-    createCanvas(400, 400);
-    cols = floor(width/w);
-    rows = floor(height/w);
-
-    for (var j = 0; j < rows; j++) {
-        for (var i = 0; i < cols; i++) {
-            var cell = new Cell(i, j);
-            grid.push(cell);
-        }
-    }
-
-    current = grid[0];
+    createCanvas(500, 500);
+    resetGame();
 }
 
 function draw() {
-    background(51);
-    for (var i = 0; i < grid.length; i++) {
-        grid[i].show();
+	background(255, 121, 63); //Aelo orange
+	for (var i = 0; i < grid.length; i++) {
+		grid[i].show();
+	}
+
+	// Change colour of goal box
+	var goalX = goal.i * w;
+	var goalY = goal.j * w;
+	noStroke();
+	fill(51);
+	rect(goalX, goalY, w, w);
+
+	// Change colour of curr box
+	var currX = curr.i * w;
+	var currY = curr.j * w;
+	noStroke();
+	fill(51); //#333333
+	rect(currX, currY, w, w);
+
+	curr.visited = true;
+	var next = curr.checkNeighbours();
+
+	if (next) {
+		stack.push(curr);
+		removeWalls(curr, next);
+		curr = next;
+	} else if (stack.length > 0) {
+		curr = stack.pop();
+	} else if (state == GameState.PREPARING) {
+        state = GameState.PLAYING;
+	}
+
+	if (state == GameState.PLAYING) {
+        const ms = millis();
+        if (!mazeStart) mazeStart = ms;
+        const timeElapsed = floor((ms - mazeStart) / 1000);
+        
+        document.querySelector("#score").innerText = timeElapsed;
+
+        switch (dir) {
+        case 1:
+            //Top
+			next = grid[index(curr.i, curr.j - 1)];
+            break;
+        case 2:
+            //Right
+			next = grid[index(curr.i + 1, curr.j)];
+            break;
+        case 3:
+            //Bottom
+			next = grid[index(curr.i, curr.j + 1)];
+            break;
+        case 4:
+            //Left
+			next = grid[index(curr.i - 1, curr.j)];
+            break;
+        }
+
+        if (dir != 0 && next && !curr.walls[dir - 1]) {
+            curr = next;
+        }
+
+        dir = 0;
+
+        if (goal.isInSamePositionAs(curr)) {
+            state = GameState.GAME_OVER;
+            console.log("Game over");
+            // alert("You have won the game, your final score was: " + timeElapsed);
+        }
     }
-    current.visited = true;
-    current.checkNeighbours();
+
+    if (state == GameState.GAME_OVER) {
+        
+    }
 }
 
-// i = column number
-// j = row number
+// Play functionality
+function keyPressed() {
+	if (keyCode === UP_ARROW) {
+        dir = 1;
+	} else if (keyCode === RIGHT_ARROW) {
+        dir = 2;
+	} else if (keyCode === DOWN_ARROW) {
+        dir = 3;
+	} else if (keyCode === LEFT_ARROW) {
+		dir = 4;
+    }
+}
 
 function index(i, j) {
-    return i + j * cols;
+	if (i < 0 || j < 0 || i > colm - 1 || j > rows - 1) {
+		return -1;
+	}
+
+	return i + j * colm;
 }
 
-function Cell(i, j) {
-    this.i = i;
-    this.j = j;
-    this.walls = [true, true, true, true];
-    this.visited = false;
-
-    this.checkNeighbours = function() {
-        var neighbours = [];
-
-        var index = i + j * cols;
-        var top = grid[index(i, j - 1)];
-        var right = grid[index(i + 1, j)];
-        var bottom = grid[index(i, j + 1)];
-        var left = grid[index(i - 1, j)];
-
-        if (!top.visited) {
-            neighbours.push(top);
-        } 
-
-        if (!right.visited) {
-            neighbours.push(right);
-        } 
-
-        if (!bottom.visited) {
-            neighbours.push(bottom);
-        } 
-        
-        if (!left.visited) {
-            neighbours.push(left);
-        } 
-    }
-
-    this.show = function() {
-        var x = this.i*w;
-        var y = this.j*w;
-
-        stroke(255);
-
-        if (this.walls[0]) {
-            line(x, y, x + w, y);
-        }
-
-        if (this.walls[1]) {
-            line(x + w, y, x + w, y + w);
-        }
-
-        if (this.walls[2]) {
-            line(x + w, y + w, x, y+w);
-        }
-
-        if (this.walls[3]) {
-            line(x, y + w, x, y);
-        }
-
-        if (this.visited) {
-            fill(255, 0, 255, 100);
-            rect(x, y, w, w);
-        }
-    }
+function removeWalls(a, b) {
+	var x = a.i - b.i;
+	if (x === 1) {
+		a.walls[3] = false;
+		b.walls[1] = false;
+	} else if (x === -1) {
+		a.walls[1] = false;
+		b.walls[3] = false;
+	}
+	var y = a.j - b.j;
+	if (y === 1) {
+		a.walls[0] = false;
+		b.walls[2] = false;
+	} else if (y === -1) {
+		a.walls[2] = false;
+		b.walls[0] = false;
+	}
 }

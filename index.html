@@ -1,22 +1,27 @@
- <!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
-     <meta charset="UTF-8">
-     <title>Maze</title>
-     <meta name="description" content="Maze">
-     <meta name="author" content="Vanaj Moorthy">
-     <link rel="stylesheet" href="style.css">
-     <script src="p5.js"></script>
-     <script src="sketch.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Maze</title>
+  <meta name="description" content="Maze">
+  <meta name="viewport" content="width=device-width, initial-scale=0.65">
+  <meta name="author" content="Vanaj Moorthy">
+  <link rel="stylesheet" href="style.css">
+  <script src="p5.js"></script>
+  <script src="sketch.js"></script>
+  <script src="cell.js"></script>
+</head>
 
-     <!--[if lt IE 9]>
-       <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-     <![endif]-->
- </head>
+<body>
+  <div class="console">
+    <p>
+      Number of boxes
+      <input id="colmInput" type="number" min="2" max="100" value="15" onchange="resetGame()">  |  Your score is: <span id="score">0</span> <input id="button" type="button" value="Reset" onclick="resetGame()">
+      </p>
+    <!-- </p> -->
+  </div>
+</body>
 
- <body>
 
- </body>
-
- </html>
+</html>

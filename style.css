@@ -1,15 +1,89 @@
-html, body {
-  height: 100%;
-  background-color: rgb(255, 255, 255);
+@import url("https://use.typekit.net/hjk6uuj.css");
+
+html,
+body {
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+	font-family: europa, sans-serif;
+	font-weight: 400;
+  font-style: normal;
+  transition: 1s;
+  overflow: hidden;
 }
 
+
+
 body {
-  margin: 0;
-  display: flex;
-
-  /* This centers our sketch horizontally. */
-  justify-content: center;
-
-  /* This centers our sketch vertically. */
+	margin: 0;
+	display: block;
+	justify-content: center;
   align-items: center;
+  margin: auto;
+}
+
+canvas {
+	border-radius: 15px;
+  box-shadow: 5px 5px 5px #999999;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.console {
+  display: block;
+	text-align: center;
+	border-radius: 30px;
+	width: 500px;
+	/* margin-left: 7.5vw;
+  margin-right: 7.5vw;
+  margin-bottom: 20px;
+  margin-top: 20px; */
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 50px;
+  color: white;
+  background-color: rgb(255, 121, 63);
+  /* padding-top: 4px; */
+  /* padding-bottom: 4px; */
+}
+
+/* @media screen and (max-width: 1275px) {
+  .console {
+    height: 200px;
+  }
+} */
+
+p {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0px !important;
+  padding: 12px;
+}
+
+#button {
+  text-decoration: none;
+  color: white;
+  background-color: #1da7ea;
+  border: none;
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+#button:hover {
+  opacity: 0.7;
+}
+
+#button:active {
+  background-color: #8f8f8f;
+  
+}
+
+#colmInput {
+  border-radius: 10px;
 }
