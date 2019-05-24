@@ -5,22 +5,48 @@
   <meta charset="UTF-8">
   <title>Maze</title>
   <meta name="description" content="Maze">
-  <meta name="viewport" content="width=device-width, initial-scale=0.5>
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
   <meta name="author" content="Vanaj Moorthy">
   <link rel="stylesheet" href="style.css">
   <script src="p5.js"></script>
   <script src="sketch.js"></script>
   <script src="cell.js"></script>
+  <script src="swipedetect.js"></script>
 </head>
 
 <body>
   <div class="console">
-    <p>
-      Number of boxes
-      <input id="colmInput" type="number" min="2" max="100" value="15" onchange="resetGame()">  ||  You finished in: <span id="score">0</span> seconds ||   <input id="button" type="button" value="Reset" onclick="resetGame()">
-      </p>
+    <p id="hello">
+      <form>
+        Name: <input id="name" type="text" name="name" onchange="nameStore()"> ||
+        Number of boxes
+
+        <input id="colmInput" type="number" min="2" max="100" value="15" onchange="resetGame()"> || You finished in:
+        <span id="score">0</span> seconds || <input id="button" type="button" value="Reset" onclick="resetGame()">
+      </form>
+    </p>
     <!-- </p> -->
   </div>
+
+  <div id="sketch-holder">
+      <!-- Our sketch will go here! -->
+    </div>
+ 
+<!-- 
+  <div class="leaderboard">
+    <h2>Leaderboard</h2>
+    <p id="scorer1">No one</p>
+    <p id="scorer2">No one</p>
+    <p id="scorer3">No one</p>
+    <p id="scorer4">No one</p>
+    <p id="scorer5">No one</p>
+    <p id="scorer6">No one</p>
+    <p id="scorer7">No one</p>
+    <p id="scorer8">No one</p>
+    <p id="scorer9">No one</p>
+    <p id="scorer10">No one</p>
+
+  </div> -->
 </body>
 
 
