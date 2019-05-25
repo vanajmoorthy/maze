@@ -133,12 +133,7 @@ function draw() {
 
 		dir = 0;
 
-		if (goal.isInSamePositionAs(curr)) {
-			state = GameState.GAME_OVER;
-			console.log("Game over");
-			// alert("You have won the game, your final score was: " + timeElapsed);
-			nameStore();
-		}
+		gameOverIfNeeded();
 	}
 }
 
@@ -280,35 +275,67 @@ function touchEnded() {
 	}
 }
 
-function nameStore() {
+let scores = {};
+
+function gameOverIfNeeded() {
+	if (!goal.isInSamePositionAs(curr)) return;
 	
-	if (goal.isInSamePositionAs(curr)) {
-		state = GameState.GAME_OVER;
-		console.log("Game over");
-		// alert("You have won the game, your final score was: " + timeElapsed);
-		latestScore = timeElapsed;
+	state = GameState.GAME_OVER;
+	console.log("Game over");
 
-		localStorage.setItem("score", latestScore);
-		var storedScore = localStorage.getItem("score");
-		highscorers.push(storedScore);
+	// alert("You have won the game, your final score was: " + timeElapsed);
 
-		highscorers.sort(function(a, b) {
-			return a - b;
-		});
-		// console.log(timeElapsed);
-		// highscorers.reverse();
-		console.log(highscorers);
-
-		var highString = highscorers.toString();
-		highString.split(",");
-
-		for (var i = 0; i < highscorers.length - 1; ++i) {
-			var id = "scorer" + i;
-			console.log(id);
-			var person = document.getElementById("name").value;
-			var combined = person + ": " + storedScore;
-			console.log(combined);
-			// document.getElementById(id).innerText = 
+	var person = document.getElementById("name").value;
+	if (person !== "" && (!scores[colm] || scores[colm].time > timeElapsed)) {
+		scores[colm] = {
+			name: person,
+			time: timeElapsed
 		}
 	}
+
+	console.log(scores);
+
+	updateLeaderboard();
+
+	// console.log(fullHighScore);
+
+	// localStorage.setItem("score", latestScore);
+	// var storedScore = localStorage.getItem("score");
+	// highscorers.push(storedScore);
+
+	// highscorers.sort(function(a, b) {
+	// 	return a - b;
+	// });
+	// // console.log(timeElapsed);
+	// // highscorers.reverse();
+	// console.log(highscorers);
+
+	// var highString = highscorers.toString();
+	// highString.split(",");
+
+	// for (var i = 0; i < highscorers.length - 1; ++i) {
+	// 	var id = "scorer" + i;
+	// 	console.log(id);
+	// 	var person = document.getElementById("name").value;
+	// 	var combined = person + ": " + storedScore;
+	// 	console.log(combined);
+	// 	// document.getElementById(id).innerText =
+	// }
+}
+
+function updateLeaderboard() {
+	let ul = document.getElementById("liststuff");
+
+	let keys = Object.keys(scores).map(k => +k).sort();
+	let strings = keys.map(col => {
+		let item = scores[col];
+		return `${col}: ${item.name} (${item.time}s)`;
+	});
+
+	var li = document.createElement("eh");
+
+	document.get
+
+	// [...ul.childNodes].forEach(ul.removeChild)
+	console.log(strings);
 }

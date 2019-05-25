@@ -18,7 +18,7 @@
   <div class="console">
     <p id="hello">
       <form>
-        Name: <input id="name" type="text" name="name" onchange="nameStore()"> ||
+        Name: <input id="name" type="text" name="name" onchange="gameOverIfNeeded()"> ||
         Number of boxes
 
         <input id="colmInput" type="number" min="2" max="100" value="15" onchange="resetGame()"> || You finished in:
@@ -32,20 +32,13 @@
       <!-- Our sketch will go here! -->
     </div>
  
-<!-- 
-  <div class="leaderboard">
-    <h2>Leaderboard</h2>
-    <p id="scorer1">No one</p>
-    <p id="scorer2">No one</p>
-    <p id="scorer3">No one</p>
-    <p id="scorer4">No one</p>
-    <p id="scorer5">No one</p>
-    <p id="scorer6">No one</p>
-    <p id="scorer7">No one</p>
-    <p id="scorer8">No one</p>
-    <p id="scorer9">No one</p>
-    <p id="scorer10">No one</p>
 
+  <!-- <div class="leaderboard">
+    <h2>Leaderboard</h2>
+    <ul id="liststuff" style="text-align: left">
+      <li id="eh">No one: 0</li>
+      <li>No one: 1</li>
+    </ul>
   </div> -->
 </body>
 
