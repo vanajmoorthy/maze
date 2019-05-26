@@ -148,6 +148,9 @@ function resetGame() {
 	dir = 0;
 	document.getElementById("score").innerText = 0;
 
+	loadScores();
+	updateLeaderboard();
+
 	mazeStart = 0;
 
 	w = width / colm;
@@ -277,6 +280,10 @@ function touchEnded() {
 
 let scores = {};
 
+function loadScores() {
+	scores = JSON.parse(localStorage.getItem("scores") || "{}");
+}
+
 function gameOverIfNeeded() {
 	if (!goal.isInSamePositionAs(curr)) return;
 	
@@ -284,6 +291,8 @@ function gameOverIfNeeded() {
 	console.log("Game over");
 
 	// alert("You have won the game, your final score was: " + timeElapsed);
+
+	loadScores();
 
 	var person = document.getElementById("name").value;
 	if (person !== "" && (!scores[colm] || scores[colm].time > timeElapsed)) {
@@ -294,6 +303,8 @@ function gameOverIfNeeded() {
 	}
 
 	console.log(scores);
+
+	localStorage.setItem("scores", JSON.stringify(scores));
 
 	updateLeaderboard();
 
@@ -325,6 +336,7 @@ function gameOverIfNeeded() {
 
 function updateLeaderboard() {
 	let ul = document.getElementById("liststuff");
+	ul.innerHTML = "";
 
 	let keys = Object.keys(scores).map(k => +k).sort();
 	let strings = keys.map(col => {
@@ -332,9 +344,11 @@ function updateLeaderboard() {
 		return `${col}: ${item.name} (${item.time}s)`;
 	});
 
-	var li = document.createElement("eh");
-
-	document.get
+	strings.forEach(str => {
+		var li = document.createElement("li");
+		li.innerText = str;
+		ul.appendChild(li);
+	});
 
 	// [...ul.childNodes].forEach(ul.removeChild)
 	console.log(strings);

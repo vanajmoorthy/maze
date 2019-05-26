@@ -103,9 +103,11 @@ p {
 
 #sketch-holder {
   display: inline;
+  /* float: left; */
 }
 
 .leaderboard {
+  overflow: hidden;
   margin: auto;
   margin-bottom: 20px !important;
   background-color: #333333;
