@@ -6,35 +6,33 @@ body {
 	background-color: rgb(255, 255, 255);
 	font-family: europa, sans-serif;
 	font-weight: 400;
-  font-style: normal;
-  transition: 1s;
-  /* overflow: hidden; */
+	font-style: normal;
+	transition: 1s;
+	/* overflow: hidden; */
 }
-
-
 
 body {
 	margin: 0;
 	display: block;
 	justify-content: center;
-  align-items: center;
-  margin: auto;
+	align-items: center;
+	margin: auto;
 }
 
 canvas {
 	border-radius: 20px;
-  /* box-shadow: 5px 5px 5px #999999; */
-  display: block;
-  margin: auto;
-  margin-bottom: 20px;
+	/* box-shadow: 5px 5px 5px #999999; */
+	display: block;
+	margin: auto;
+	margin-bottom: 20px;
 }
 
 h2 {
-  margin-top: 2px !important;
+	margin-top: 2px !important;
 }
 
 .console {
-  display: block;
+	display: block;
 	text-align: center;
 	border-radius: 30px;
 	width: 740px;
@@ -42,14 +40,14 @@ h2 {
   margin-right: 7.5vw;
   margin-bottom: 20px;
   margin-top: 20px; */
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 50px;
-  color: white;
-  background-color: rgb(255, 121, 63);
-  /* padding-top: 4px; */
-  /* padding-bottom: 4px; */
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 50px;
+	color: white;
+	background-color: rgb(255, 121, 63);
+	/* padding-top: 4px; */
+	/* padding-bottom: 4px; */
 }
 
 /* @media screen and (max-width: 1275px) {
@@ -59,62 +57,61 @@ h2 {
 } */
 
 p {
-  /* padding-left: 20px; */
-  /* padding-right: 20px; */
-  margin: 0px !important;
-  padding: 7px;
+	/* padding-left: 20px; */
+	/* padding-right: 20px; */
+	margin: 0px !important;
+	padding: 7px;
 }
 
 #button {
-  text-decoration: none;
-  color: white;
-  background-color: #1da7ea;
-  border: none;
-  /* padding-top: 10px; */
-  /* padding-bottom: 10px; */
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 10px;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+	text-decoration: none;
+	color: white;
+	background-color: #1da7ea;
+	border: none;
+	/* padding-top: 10px; */
+	/* padding-bottom: 10px; */
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 10px;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 }
 
 #button:hover {
-  opacity: 0.7;
+	opacity: 0.7;
 }
 
 #button:active {
-  background-color: #8f8f8f;
-  
+	background-color: #8f8f8f;
 }
 
 #colmInput {
-  border-radius: 10px;
+	border-radius: 10px;
 }
 
 .leaderboard {
-  text-align: center;
+	text-align: center;
 }
 
 #name {
-  border-radius: 10px;
-  width: 90px;
+	border-radius: 10px;
+	width: 90px;
 }
 
 #sketch-holder {
-  display: inline;
-  /* float: left; */
+	display: inline;
+	/* float: left; */
 }
 
 .leaderboard {
-  overflow: hidden;
-  margin: auto;
-  margin-bottom: 20px !important;
-  background-color: #333333;
-  width: 200px;
-  color: white;
-  height: 400px;
-  padding: 20px;
-  border-radius: 40px;
-  box-shadow: 5px 5px 5px #999999;
+	overflow: hidden;
+	margin: auto;
+	margin-bottom: 20px !important;
+	background-color: #333333;
+	width: 200px;
+	color: white;
+	height: 400px;
+	padding: 20px;
+	border-radius: 40px;
+	box-shadow: 5px 5px 5px #999999;
 }

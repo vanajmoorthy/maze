@@ -286,7 +286,7 @@ function loadScores() {
 
 function gameOverIfNeeded() {
 	if (!goal.isInSamePositionAs(curr)) return;
-	
+
 	state = GameState.GAME_OVER;
 	console.log("Game over");
 
@@ -299,7 +299,7 @@ function gameOverIfNeeded() {
 		scores[colm] = {
 			name: person,
 			time: timeElapsed
-		}
+		};
 	}
 
 	console.log(scores);
@@ -338,7 +338,9 @@ function updateLeaderboard() {
 	let ul = document.getElementById("liststuff");
 	ul.innerHTML = "";
 
-	let keys = Object.keys(scores).map(k => +k).sort();
+	let keys = Object.keys(scores)
+		.map(k => +k)
+		.sort();
 	let strings = keys.map(col => {
 		let item = scores[col];
 		return `${col}: ${item.name} (${item.time}s)`;
